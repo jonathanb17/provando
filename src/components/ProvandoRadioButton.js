@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { FaStar } from "react-icons/fa"
+import Rating from './Rating'
 
 const ProvandoRadioButton = ({ title = "DEFENSA" }) => {
 
-    const [rating, setRating] = useState(0);
 
     const [items, setItems] = useState([
         { id: 1, it: "barrida" },
@@ -14,35 +13,6 @@ const ProvandoRadioButton = ({ title = "DEFENSA" }) => {
 
     const [barrida, setBarrida] = useState('barrida');
 
-
-    const star = () => {
-        return (
-
-            [...Array(5)].map((star, i) => {
-
-                const ratingValue = i + 1;
-
-
-                return <label key={i}>
-
-                    <input
-                        type="radio"
-                        name="rating"
-                        value={ratingValue}
-                        onClick={() => setRating(ratingValue)}
-                    //onClick={() => console.log('hola')}
-                    />
-                    <FaStar
-                        className="star"
-                        size={40}
-                        color={ratingValue <= rating ? "yellow" : " black"}
-                    />
-                </label>;
-            })
-
-        )
-    }
-
     return (
         <div>
             <h1 className="text-center">{`${title} (*4)`}</h1>
@@ -50,14 +20,11 @@ const ProvandoRadioButton = ({ title = "DEFENSA" }) => {
             <>
                 { items.map((item, i) => {
                     return (
-                        <h1 key={i}>{item.it}{star()}</h1>
+                        <h1 key={i}>{item.it}<Rating></Rating></h1>
                     )
                 })}
             </>
-
-
-
-
+            
         </div>
     )
 }
